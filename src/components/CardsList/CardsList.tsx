@@ -1,6 +1,6 @@
 import "./CardsList.css";
 import React from "react";
-import { CardsListItem } from "../CardsListItem/CardsListItem";
+import { CardsListItem } from "../CardsListItem";
 import { useFirebaseDB } from "../../hooks/useFirebaseDB";
 import { Box, CircularProgress } from "@mui/material";
 

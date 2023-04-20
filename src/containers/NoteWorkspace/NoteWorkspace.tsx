@@ -14,7 +14,7 @@ import { useFirebaseDB } from "../../hooks/useFirebaseDB";
 
 interface INoteWorkspace {
   fromModal?: boolean;
-  closeModal: () => void;
+  closeModal?: () => void;
 }
 
 export const NoteWorkspace: React.FC<INoteWorkspace> = ({
@@ -63,7 +63,7 @@ export const NoteWorkspace: React.FC<INoteWorkspace> = ({
     if (value !== "") {
       addNote(value);
       setValue("");
-      closeModal();
+      closeModal && closeModal();
     }
   };
 
