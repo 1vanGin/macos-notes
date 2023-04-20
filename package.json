@@ -1,0 +1,34 @@
+{
+  "name": "macos-notes",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "firebase": "^9.19.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.12.0",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@types/react-router-dom": "^5.3.3",
+    "@vitejs/plugin-react": "^3.1.0",
+    "date-fns": "^2.29.3",
+    "easymde": "^2.18.0",
+    "prettier": "^2.8.7",
+    "react-markdown": "^8.0.7",
+    "react-router-dom": "^6.10.0",
+    "react-simplemde-editor": "^5.2.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.2.0"
+  }
+}

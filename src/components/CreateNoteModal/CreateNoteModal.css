@@ -1,0 +1,22 @@
+.modal-modal-body{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 720px;
+    max-height: 720px;
+    background-color: #FFFFFF;
+    padding: 20px;
+}
+.modal-modal-body .workspace {
+    width: auto;
+}
+.modal-modal-footer{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+    flex-wrap: wrap;
+    align-items: stretch;
+    height: 100%;
+    padding: 0 20px;
+}

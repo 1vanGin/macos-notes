@@ -1,0 +1,6 @@
+.sidebar{
+    display: flex;
+    flex-grow: 1;
+    width: 320px;
+    border-right: 1px solid #1976d2;
+}

@@ -1,0 +1,30 @@
+.cards__list-item {
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #1976d2;
+    /*padding: 20px;*/
+    cursor: pointer;
+}
+
+.cards__list-body {
+    padding: 20px;
+}
+
+.cards__list-item__time {
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.cards__list-item__text {
+    color: rgba(0, 0, 0, 0.65);
+    -webkit-line-clamp: 5;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.cards__list-footer {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #1976d2;
+    padding: 5px 20px;
+}

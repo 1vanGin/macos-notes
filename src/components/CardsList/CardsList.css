@@ -1,0 +1,22 @@
+.cards__list{
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.cards__is-empty{
+    flex-grow: 1;
+    text-align: center;
+    padding: 20px;
+}
+
+.cards__list a {
+    text-decoration: none;
+    display: flex;
+    align-items: stretch;
+}
+
+.cards__list a:link,
+.cards__list a:visited {
+    color: unset;
+}

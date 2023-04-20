@@ -1,0 +1,21 @@
+.sidebar__list{
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+.sidebar__is-empty{
+    flex-grow: 1;
+    text-align: center;
+    padding: 20px;
+}
+
+.sidebar__list a {
+    text-decoration: none;
+}
+
+.sidebar__list a:link,
+.sidebar__list a:visited {
+    color: unset;
+}
