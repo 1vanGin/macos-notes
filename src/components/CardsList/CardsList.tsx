@@ -1,11 +1,13 @@
 import "./CardsList.css";
 import React from "react";
 import { CardsListItem } from "../CardsListItem";
-import { useFirebaseDB } from "../../hooks/useFirebaseDB";
 import { Box, CircularProgress } from "@mui/material";
+import { useSearchableNotes } from "../../hooks/useSearcheableNotes";
+import { useFirebaseDB } from "../../hooks/useFirebaseDB";
 
 export const CardsList = () => {
   const { notes, loading } = useFirebaseDB();
+  const { searchableNotes } = useSearchableNotes(notes);
 
   if (loading) {
     return (
@@ -21,7 +23,7 @@ export const CardsList = () => {
 
   return (
     <div className="cards__list">
-      {notes.map((note) => (
+      {searchableNotes.map((note) => (
         <CardsListItem key={note.id} item={note} />
       ))}
     </div>

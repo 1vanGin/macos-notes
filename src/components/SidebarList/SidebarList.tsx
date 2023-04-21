@@ -3,9 +3,11 @@ import React from "react";
 import { SidebarListItem } from "../SidebarListItem";
 import { useFirebaseDB } from "../../hooks/useFirebaseDB";
 import { Box, CircularProgress } from "@mui/material";
+import { useSearchableNotes } from "../../hooks/useSearcheableNotes";
 
 export const SidebarList = () => {
   const { notes, loading } = useFirebaseDB();
+  const { searchableNotes } = useSearchableNotes(notes);
 
   if (loading) {
     return (
@@ -21,7 +23,7 @@ export const SidebarList = () => {
 
   return (
     <ul className="sidebar__list">
-      {notes.map((note) => (
+      {searchableNotes.map((note) => (
         <SidebarListItem key={note.id} item={note} />
       ))}
     </ul>

@@ -6,18 +6,44 @@ import { CardsView } from "../CardsView";
 import { TableView } from "../TableView";
 import { Links } from "../../enums";
 import { NotFound } from "../../pages/NotFound";
+import { PrivateRoute } from "../../components/PrivateRoute";
 
 export const RedirectRouter = () => {
   return (
     <div className="App">
-      <Header />
-      <Routes>
-        <Route path="/" element={<TableView />} />
-        <Route path={`${Links.tableLink}/:id`} element={<TableView />} />
-        <Route path={`${Links.cardsLink}`} element={<CardsView />} />
-        <Route path={`${Links.loginLink}`} element={<Login />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <>
+        <PrivateRoute>
+          <Header />
+        </PrivateRoute>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <TableView />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={`${Links.tableLink}/:id`}
+            element={
+              <PrivateRoute>
+                <TableView />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={`${Links.cardsLink}`}
+            element={
+              <PrivateRoute>
+                <CardsView />
+              </PrivateRoute>
+            }
+          />
+          <Route path={`${Links.loginLink}`} element={<Login />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </>
     </div>
   );
 };

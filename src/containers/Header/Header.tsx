@@ -1,6 +1,11 @@
 import "./Header.css";
 import React, { useState } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import {
+  NavLink,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import { useAuth } from "../../context/AuthProvider";
 import { CreateNoteModal } from "../../components/CreateNoteModal";
 import { Links } from "../../enums";
@@ -22,6 +27,15 @@ export const Header = () => {
   };
 
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const searchHandler = (value: string) => {
+    if (value !== "") {
+      setSearchParams({ search: value });
+    } else {
+      setSearchParams("");
+    }
+  };
 
   return (
     <>
@@ -70,6 +84,8 @@ export const Header = () => {
             InputProps={{
               startAdornment: <SearchIcon color="primary" />,
             }}
+            value={searchParams.get("search") || ""}
+            onChange={(e) => searchHandler(e.target.value)}
           />
           <Button onClick={handleSignOut} variant="outlined">
             <LogoutIcon />

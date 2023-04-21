@@ -17,7 +17,7 @@ export const Login = () => {
   const auth = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from || "/";
+  // const from = location.state?.from || "/";
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -46,7 +46,7 @@ export const Login = () => {
     }
 
     auth.signIn(username, () => {
-      navigate(from, {
+      navigate("/", {
         replace: true,
       });
     });
