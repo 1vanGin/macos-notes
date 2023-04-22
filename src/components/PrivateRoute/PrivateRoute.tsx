@@ -8,6 +8,7 @@ export const PrivateRoute: React.FC<childrenPropType | any> = ({
 }) => {
   const auth = useAuth();
   const location = useLocation();
+
   if (auth.user === null) {
     return <Navigate to="/login" state={{ from: location.pathname }} replace />;
   }

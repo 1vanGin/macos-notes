@@ -14,12 +14,12 @@ interface ICardListItemProps {
 
 export const CardsListItem: React.FC<ICardListItemProps> = ({ item }) => {
   const [openDialog, setOpenDialog] = useState(false);
-  const handleClickOpen = (event: any) => {
+  const handleClickOpen = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     setOpenDialog(true);
   };
 
-  const handleClose = (event: any) => {
+  const handleClose = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     setOpenDialog(false);
   };

@@ -3,14 +3,13 @@ import { IUseTimeout } from "../interfaces";
 
 export function useTimeout(cb: () => void, delay: number): IUseTimeout {
   const callbackRef = useRef(cb);
-  const timeoutRef = useRef();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     callbackRef.current = cb;
   }, [cb]);
 
   const set = useCallback(() => {
-    //@ts-ignore
     timeoutRef.current = setTimeout(() => callbackRef.current(), delay);
   }, [delay]);
 

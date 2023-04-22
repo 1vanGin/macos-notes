@@ -24,7 +24,7 @@ export const CustomDialog: React.FC<IDeleteDialog> = ({
   const { deleteNote } = useFirebaseDB();
   const { id } = useParams();
   const navigate = useNavigate();
-  const yes = (event: any) => {
+  const yes = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     setShowBackdrop(true);
 

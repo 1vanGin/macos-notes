@@ -12,9 +12,7 @@ export const RedirectRouter = () => {
   return (
     <div className="App">
       <>
-        <PrivateRoute>
-          <Header />
-        </PrivateRoute>
+        <Header />
         <Routes>
           <Route
             path="/"

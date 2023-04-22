@@ -1,5 +1,7 @@
+import { ReactNode } from "react";
+
 export type childrenPropType = {
-  children: JSX.Element | JSX.Element[];
+  children: JSX.Element | JSX.Element[] | ReactNode;
 };
 
 export type workspaceStateType = "show" | "edit";

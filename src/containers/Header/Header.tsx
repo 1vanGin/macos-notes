@@ -46,53 +46,56 @@ export const Header = () => {
           <div className="header__logo">
             <NavLink to={"/"}>Notes like MacOS</NavLink>
           </div>
-
-          <div className="header__button-wrapper">
-            <NavLink to={"/"}>
-              <Button
-                variant={
-                  location.pathname.indexOf("cards") !== -1
-                    ? "outlined"
-                    : "contained"
-                }
-              >
-                <TableRowsIcon />
+          {auth.user !== null && (
+            <div className="header__button-wrapper">
+              <NavLink to={"/"}>
+                <Button
+                  variant={
+                    location.pathname.indexOf("cards") !== -1
+                      ? "outlined"
+                      : "contained"
+                  }
+                >
+                  <TableRowsIcon />
+                </Button>
+              </NavLink>
+              <NavLink to={`${Links.cardsLink}`}>
+                <Button
+                  variant={
+                    location.pathname.indexOf("cards") === -1
+                      ? "outlined"
+                      : "contained"
+                  }
+                >
+                  <GridViewIcon />
+                </Button>
+              </NavLink>
+              <Button onClick={() => setOpenModal(true)} variant="outlined">
+                <AddIcon />
               </Button>
-            </NavLink>
-            <NavLink to={`${Links.cardsLink}`}>
-              <Button
-                variant={
-                  location.pathname.indexOf("cards") === -1
-                    ? "outlined"
-                    : "contained"
-                }
-              >
-                <GridViewIcon />
-              </Button>
-            </NavLink>
-            <Button onClick={() => setOpenModal(true)} variant="outlined">
-              <AddIcon />
+            </div>
+          )}
+        </div>
+        {auth.user !== null && (
+          <div className="header__rightside-bar">
+            <TextField
+              color="primary"
+              id="search"
+              label="search"
+              variant="outlined"
+              size="small"
+              focused
+              InputProps={{
+                startAdornment: <SearchIcon color="primary" />,
+              }}
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+            />
+            <Button onClick={handleSignOut} variant="outlined">
+              <LogoutIcon />
             </Button>
           </div>
-        </div>
-        <div className="header__rightside-bar">
-          <TextField
-            color="primary"
-            id="search"
-            label="search"
-            variant="outlined"
-            size="small"
-            focused
-            InputProps={{
-              startAdornment: <SearchIcon color="primary" />,
-            }}
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-          />
-          <Button onClick={handleSignOut} variant="outlined">
-            <LogoutIcon />
-          </Button>
-        </div>
+        )}
       </div>
       <CreateNoteModal
         open={openModal}

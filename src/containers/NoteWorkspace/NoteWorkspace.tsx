@@ -1,8 +1,8 @@
 import "./NoteWorkspace.css";
+import "easymde/dist/easymde.min.css";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { SimpleMdeReact } from "react-simplemde-editor";
 import ReactMarkdown from "react-markdown";
-import "easymde/dist/easymde.min.css";
 import { Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -41,7 +41,6 @@ export const NoteWorkspace: React.FC<INoteWorkspace> = ({
       )[0];
 
       if (!!id && !loading) {
-        // setState("show");
         setValue(currentNote?.text.replaceAll("\\n", "\n"));
       }
     }
