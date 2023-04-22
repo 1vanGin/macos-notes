@@ -15,10 +15,16 @@ export interface INotesDB {
   loading: boolean;
   addNote: (value: string) => void;
   deleteNote: (id: number) => void;
+  updateNote: (id: number, text: string) => void;
 }
 export interface INotesItem {
   id: number;
   text: string;
   time: number;
   title: string;
+}
+
+export interface IUseTimeout {
+  reset: () => void;
+  clear: () => void;
 }

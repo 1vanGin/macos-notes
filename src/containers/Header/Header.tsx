@@ -15,6 +15,7 @@ import GridViewIcon from "@mui/icons-material/GridView";
 import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { useDebounce } from "../../hooks/useDebounce";
 
 export const Header = () => {
   const auth = useAuth();
@@ -28,14 +29,15 @@ export const Header = () => {
 
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [value, setValue] = useState(searchParams.get("search") || "");
 
-  const searchHandler = (value: string) => {
-    if (value !== "") {
-      setSearchParams({ search: value });
-    } else {
-      setSearchParams("");
-    }
-  };
+  useDebounce(
+    () => {
+      value !== "" ? setSearchParams({ search: value }) : setSearchParams("");
+    },
+    500,
+    [value]
+  );
 
   return (
     <>
@@ -49,9 +51,9 @@ export const Header = () => {
             <NavLink to={"/"}>
               <Button
                 variant={
-                  location.pathname.indexOf("cards") === -1
-                    ? "contained"
-                    : "outlined"
+                  location.pathname.indexOf("cards") !== -1
+                    ? "outlined"
+                    : "contained"
                 }
               >
                 <TableRowsIcon />
@@ -84,8 +86,8 @@ export const Header = () => {
             InputProps={{
               startAdornment: <SearchIcon color="primary" />,
             }}
-            value={searchParams.get("search") || ""}
-            onChange={(e) => searchHandler(e.target.value)}
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
           />
           <Button onClick={handleSignOut} variant="outlined">
             <LogoutIcon />

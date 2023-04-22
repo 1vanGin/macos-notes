@@ -11,7 +11,14 @@ export const CardsList = () => {
 
   if (loading) {
     return (
-      <Box sx={{ display: "flex", textAlign: "center", margin: "20px auto" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          textAlign: "center",
+          margin: "20px auto",
+        }}
+      >
         <CircularProgress />
       </Box>
     );

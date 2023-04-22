@@ -6,6 +6,7 @@ import { INotesDB, INotesItem } from "../interfaces";
 export const useFirebaseDB = (): INotesDB => {
   const [notes, setNotes] = useState<INotesItem[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const dbRef = ref(db, "notes");
 
   const addNote = (value: string) => {
     setLoading(true);
@@ -16,11 +17,11 @@ export const useFirebaseDB = (): INotesDB => {
       .trim();
     const params: INotesItem = {
       id: new Date().getTime(),
-      time: new Date().getTime(),
       text: value,
+      time: new Date().getTime(),
       title,
     };
-    const dbRef = ref(db, "notes");
+
     set(dbRef, [...oldNotes, params]).then(() => {
       setLoading(false);
       updateLocalNotes();
@@ -30,7 +31,31 @@ export const useFirebaseDB = (): INotesDB => {
   const deleteNote = (id: number) => {
     setLoading(true);
     const updatedNotes: INotesItem[] = notes.filter((item) => item.id !== id);
-    const dbRef = ref(db, "notes");
+    set(dbRef, [...updatedNotes]).then(() => {
+      setLoading(false);
+      updateLocalNotes();
+    });
+  };
+
+  const updateNote = (id: number, text: string) => {
+    setLoading(true);
+    const updatedNotes: INotesItem[] = notes.map((item) => {
+      if (item.id === id) {
+        const title = text
+          .split("\n")[0]
+          .replace(/[^a-zа-яё0-9\s]/gi, " ")
+          .trim();
+        return {
+          id: item.id,
+          text: text,
+          time: item.time,
+          title,
+        };
+      } else {
+        return item;
+      }
+    });
+
     set(dbRef, [...updatedNotes]).then(() => {
       setLoading(false);
       updateLocalNotes();
@@ -38,17 +63,16 @@ export const useFirebaseDB = (): INotesDB => {
   };
 
   const updateLocalNotes = () => {
-    const dbRef = ref(db, "notes");
+    setLoading(true);
     onValue(dbRef, (snapshot) => {
       const data = snapshot.val();
       setNotes(data);
+      setLoading(false);
     });
   };
 
   useEffect(() => {
-    setLoading(true);
     updateLocalNotes();
-    setLoading(false);
   }, []);
 
   return {
@@ -56,5 +80,6 @@ export const useFirebaseDB = (): INotesDB => {
     notes,
     addNote,
     deleteNote,
+    updateNote,
   };
 };

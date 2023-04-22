@@ -1,5 +1,5 @@
 .workspace{
-    width: 100%;
+    width: calc(100% - 360px);  /* 320 sidebar + 20+20 margin*/
     margin: 20px;
 }
 
@@ -13,6 +13,7 @@
     width: 100%;
     max-height: 600px;
     overflow: auto;
+    word-break: break-all;
 }
 .react-markdown code {
     white-space: break-spaces;

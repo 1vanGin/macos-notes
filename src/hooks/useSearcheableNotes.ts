@@ -1,7 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { INotesItem } from "../interfaces";
-import { useFirebaseDB } from "./useFirebaseDB";
 
 export const useSearchableNotes = (notes: INotesItem[]) => {
   const [searchParams] = useSearchParams();

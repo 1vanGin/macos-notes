@@ -11,6 +11,7 @@ import { INotesItem, workspaceStateType } from "../../interfaces";
 import { CustomDialog } from "../../components/CustomDialog/";
 import { useParams } from "react-router-dom";
 import { useFirebaseDB } from "../../hooks/useFirebaseDB";
+import { useDebounce } from "../../hooks/useDebounce";
 
 interface INoteWorkspace {
   fromModal?: boolean;
@@ -26,7 +27,7 @@ export const NoteWorkspace: React.FC<INoteWorkspace> = ({
     return <div className="workspace">Выберите заметку</div>;
   }
 
-  const { notes, loading, addNote } = useFirebaseDB();
+  const { notes, loading, addNote, updateNote } = useFirebaseDB();
   const [value, setValue] = useState("");
   const [state, setState] = useState<workspaceStateType>(
     fromModal ? "edit" : "show"
@@ -40,8 +41,7 @@ export const NoteWorkspace: React.FC<INoteWorkspace> = ({
       )[0];
 
       if (!!id && !loading) {
-        setState("show");
-        // setValue(currentNote?.text.replace(/\\n/g, "\n"));
+        // setState("show");
         setValue(currentNote?.text.replaceAll("\\n", "\n"));
       }
     }
@@ -73,6 +73,14 @@ export const NoteWorkspace: React.FC<INoteWorkspace> = ({
       nativeSpellcheck: false,
     };
   }, []);
+
+  useDebounce(
+    () => {
+      if (id && state === "edit" && !fromModal) updateNote(Number(id), value);
+    },
+    3000,
+    [value]
+  );
 
   return (
     <div className="workspace">
