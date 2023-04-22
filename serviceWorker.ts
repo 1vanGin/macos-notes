@@ -1,5 +1,6 @@
-export const staticCacheName = "static-site-v1";
-export const dynamicCacheName = "dynamic-site-v1";
+//@ts-ignore
+const staticCacheName = "static-site-v1";
+const dynamicCacheName = "dynamic-site-v1";
 
 const ASSETS = [
   "/",
