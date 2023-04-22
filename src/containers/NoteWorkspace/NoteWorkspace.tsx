@@ -77,7 +77,7 @@ export const NoteWorkspace: React.FC<INoteWorkspace> = ({
     () => {
       if (id && state === "edit" && !fromModal) updateNote(Number(id), value);
     },
-    3000,
+    250,
     [value]
   );
 
