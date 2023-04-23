@@ -41,7 +41,7 @@ export const Header = () => {
 
   return (
     <>
-      <div className="header">
+      <header className="header">
         <div className="header__leftside-bar">
           <div className="header__logo">
             <NavLink to={"/"}>Notes like MacOS</NavLink>
@@ -96,7 +96,7 @@ export const Header = () => {
             </Button>
           </div>
         )}
-      </div>
+      </header>
       <CreateNoteModal
         open={openModal}
         handleClose={() => setOpenModal(false)}

@@ -1,5 +1,7 @@
 .sidebar__list{
     width: 100%;
+    height: 100%;
+    overflow: auto;
     padding: 0;
     list-style: none;
     margin: 0;
