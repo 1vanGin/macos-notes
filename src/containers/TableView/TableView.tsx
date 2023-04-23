@@ -5,7 +5,7 @@ import { ErrorBoundary } from "../../components/ErrorBoundary";
 
 export const TableView = () => {
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", height: "100%" }}>
       <Sidebar />
       <ErrorBoundary>
         <NoteWorkspace />
